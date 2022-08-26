@@ -3,15 +3,19 @@ import styles from './Navbar.module.css';
 
 import NavbarLogout from './NavbarLogout';
 import Header from './Header';
+import { NavLink } from 'react-router-dom';
 
 
 const Navbar = () => {
   return (
     <>
     <div className={styles.container}>
-      <a className={styles.logo}>conduit</a>
+      <NavLink to="#" className={styles.logo}>conduit</NavLink>
       <div className={styles.navigation}>
-          <p>Home</p>
+          <NavLink to="/"style={({isActive})=> ({
+        color:isActive?'black':'transperent',
+        fontWeight:isActive?'bold':'normal'
+        })}>Home</NavLink>
           <NavbarLogout/>
       </div>
     </div>
