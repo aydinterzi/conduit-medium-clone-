@@ -1,10 +1,13 @@
 .container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
-.feeds {
+.header {
     display: flex;
-    gap: 1.5em;
+    justify-content: space-around;
+}
+
+.profile {
+    display: flex;
 }

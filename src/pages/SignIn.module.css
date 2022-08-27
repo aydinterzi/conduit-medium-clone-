@@ -1,0 +1,41 @@
+form {
+    margin: 0 auto;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.signin {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.signup {
+    color: RGB(61, 139, 61);
+    font-weight: bold;
+}
+
+.signup:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+input {
+    width: 100%;
+    border-radius: 5px;
+    font-size: 1.5em;
+    padding: .5em;
+    border-color: #999999;
+}
+
+button {
+    padding:  1em;
+    background-color: #449D44;
+    color: white;
+    border-radius: 5px;
+    align-self: flex-end;
+    border-color: transparent;
+    font-size: 1em;
+}
+

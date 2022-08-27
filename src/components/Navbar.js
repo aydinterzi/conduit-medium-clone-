@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './Navbar.module.css';
 
 import NavbarLogout from './NavbarLogout';
-import Header from './Header';
 import { NavLink } from 'react-router-dom';
 
 
@@ -19,7 +18,6 @@ const Navbar = () => {
           <NavbarLogout/>
       </div>
     </div>
-    <Header/>
     </>
   )
 }
