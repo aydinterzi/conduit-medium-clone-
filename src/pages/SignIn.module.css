@@ -36,7 +36,7 @@ input {
     border-color: #999999;
 }
 
-button {
+.btn {
     padding:  1em;
     background-color: #449D44;
     color: white;

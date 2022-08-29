@@ -29,7 +29,7 @@ const SignIn = () => {
 
   return (
     <div className={styles.container}>
-      <form>
+      <form  onSubmit={handleSubmit}>
         <p className={styles.signin}>Sign in</p>
         <p className={styles.signup}>Have an account?</p>
         <input
@@ -42,7 +42,7 @@ const SignIn = () => {
           type="password"
           placeholder="Password"
         />
-        <button onClick={handleSubmit}>Sign in</button>
+        <button className={styles.btn} type="submit">Sign in</button>
       </form>
     </div>
   );

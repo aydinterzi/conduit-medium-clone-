@@ -7,7 +7,7 @@ const Article = () => {
       <div className={styles.header}>
         <div className={styles.profile}>
           <img src="" alt="resim" />
-          <div>
+          <div className={styles.author}>
             <a href="">Gerome</a>
             <span>November 24, 2021</span>
           </div>
@@ -16,7 +16,7 @@ const Article = () => {
       </div>
       <h1>Create new imp.</h1>
       <p>join the community by creating a new implementation</p>
-      <div>
+      <div className={styles.footer}>
         <p>Read more...</p>
         <button>implementations</button>
       </div>

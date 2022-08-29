@@ -1,13 +1,40 @@
-.container {
+.main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 0 auto;
-    padding: 1rem;
-    width: 60%;
+    padding: 1em;
+    width: 78%;
 }
 
 .feeds {
     display: flex;
     gap: 1.5em;
+}
+
+.container {
+    display: flex;
+    margin: 1em auto;
+    width: 60%;
+}
+
+.tags {
+    padding: .5em;
+    width: 22%;
+    background-color: #F3F3F3;
+    border-radius: 5px;
+    align-self: flex-start;
+}
+
+.tag {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .3em;
+}
+
+.tag a {
+    padding: .1em .5em;
+    background-color: #687077;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 12.8px;
 }

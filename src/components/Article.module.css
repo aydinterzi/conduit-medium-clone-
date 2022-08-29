@@ -5,9 +5,19 @@
 
 .header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .profile {
     display: flex;
+}
+
+.author {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
 }
