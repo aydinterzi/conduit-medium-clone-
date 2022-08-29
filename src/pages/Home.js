@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Articles from '../components/Articles'
+import Header from '../components/Header';
 
 import styles from './Home.module.css'
 
@@ -7,6 +8,8 @@ const Home = () => {
   const [articles, setArticles] = useState();
   
   return (
+    <>
+    <Header/>
     <div className={styles.container}>
       <div className={styles.feeds}>
         <p>Your feed</p>
@@ -19,6 +22,7 @@ const Home = () => {
         
       </div>
     </div>
+    </>
   )
 }
 
