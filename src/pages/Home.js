@@ -7,18 +7,51 @@ import Header from "../components/Header";
 import styles from "./Home.module.css";
 
 const Home = () => {
-  const [articles, setArticles] = useState();
-  const [tags, setTags] = useState();
+  const [articles, setArticles] = useState([]);
+  const [tags, setTags] = useState([]);
   const { currentUser } = useSelector(state => state.user);
+
+  const handleMyFeed = async () => {
+    try {
+      const res = await axios.get('articles/feed',{
+        headers: {
+          Authorization : `Bearer ${currentUser.user.token}`
+        }
+      })
+      setArticles(res.data.articles);
+    }
+    catch(err) {
+      console.log(err);
+    }
+  }
+
+  const handleGlobalFeed = async () => {
+    try {
+      const res = await axios.get('articles',{
+        headers: {
+          Authorization : `Bearer ${currentUser.user.token}`
+        }
+      })
+      setArticles(res.data.articles);
+      console.log(articles)
+    }
+    catch(err) {
+      console.log(err);
+    }
+  }
+
+
   useEffect(()=> {
     const getTags = async ()  => {
       try {
         const res = await axios.get('tags');
         setTags(res.data.tags);
+        console.log(tags);
       } catch (error) {
       }
     }
     getTags();
+    handleGlobalFeed();
     },[])
   return (
     <>
@@ -26,18 +59,18 @@ const Home = () => {
       <div className={styles.container}>
         <div className={styles.main}>
           <div className={styles.feeds}>
-            <a href="#">Your feed</a>
-            <a href="#">Global feed</a>
+            <a onClick={handleMyFeed} href="#">Your feed</a>
+            <a onClick={handleGlobalFeed}  href="#">Global feed</a>
           </div>
           <div className={styles.articles}>
-            <Articles articles={articles} />
+            <Articles articles={articles}/>
           </div>
         </div>
       <div className={styles.tags}>
         <p>Popular Tags</p>
         <div className={styles.tag}>
-          {tags && tags.map(tag => (
-            <a>{tag}</a>
+          {tags && tags.map((tag, index) => (
+            <a key={index}>{tag}</a>
           ))}
         </div>
       </div>

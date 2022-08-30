@@ -1,14 +1,16 @@
 import React from 'react'
 import Article from './Article';
 import styles from './Articles.module.css';
-const Articles = () => {
+const Articles = ( {articles} ) => {
+  console.log(articles)
   return (
     <div className={styles.container}>
-        <Article/>
-        <hr />
-        <Article/>
-        <hr />
-        <Article/>
+        {articles.map((article,index)=>(
+          <>
+          <hr />
+          <Article key={index} article={article}/>
+          </>
+        ))}
     </div>
   )
 }

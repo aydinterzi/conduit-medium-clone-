@@ -1,24 +1,29 @@
 import React from "react";
 import styles from "./Article.module.css";
+import Articles from "./Articles";
 
-const Article = () => {
+const Article = ({article}) => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.profile}>
-          <img src="" alt="resim" />
+          <img src={article.author.image} alt="resim" />
           <div className={styles.author}>
-            <a href="">Gerome</a>
-            <span>November 24, 2021</span>
+            <a href="">{article.author.username}</a>
+            <span>{article.createdAt}</span>
           </div>
         </div>
-        <button>3681</button>
+        <button>{article.favoritesCount}</button>
       </div>
-      <h1>Create new imp.</h1>
-      <p>join the community by creating a new implementation</p>
+      <h1>{article.slug}</h1>
+      <p>{article.description}</p>
       <div className={styles.footer}>
         <p>Read more...</p>
-        <button>implementations</button>
+        <ul className={styles.tagList}>
+        {article.tagList.map((tag, index) => (
+            <li className={styles.tagItem} key={index}>{tag}</li>
+          ))}
+          </ul>
       </div>
     </div>
   );
