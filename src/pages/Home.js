@@ -5,6 +5,7 @@ import Articles from "../components/Articles";
 import Header from "../components/Header";
 
 import styles from "./Home.module.css";
+import { NavLink } from "react-router-dom";
 
 const Home = () => {
   const [articles, setArticles] = useState([]);
@@ -59,8 +60,8 @@ const Home = () => {
       <div className={styles.container}>
         <div className={styles.main}>
           <div className={styles.feeds}>
-            <a onClick={handleMyFeed} href="#">Your feed</a>
-            <a onClick={handleGlobalFeed}  href="#">Global feed</a>
+            <a href="/" onClick={handleMyFeed} >Your feed</a>
+            <a href onClick={handleGlobalFeed} >Global feed</a>
           </div>
           <div className={styles.articles}>
             <Articles articles={articles}/>

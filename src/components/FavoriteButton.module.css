@@ -1,0 +1,11 @@
+.btn {
+    border-radius: 5px;
+    background-color: #449D44;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 0.2rem;
+}

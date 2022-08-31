@@ -1,6 +1,8 @@
 .container {
     display: flex;
     flex-direction: column;
+    gap: 1em;
+    color: #AAAAAA;
 }
 
 .header {
@@ -10,6 +12,8 @@
 
 .profile {
     display: flex;
+    gap: 1em;
+    align-items: center;
 }
 
 .author {
@@ -31,6 +35,21 @@
     padding: .1em .5em;
     border-radius: 10px;
     border: 1px solid #aaaaaa;
-    color: #AAAAAA;
     font-size: 12.8px
+}
+
+.profile img {
+    border-radius: 50%;
+    height: 2rem;
+}
+
+.author a {
+    color: #3D8B3D ;
+    font-weight: bold;
+}
+
+.slug {
+    font-size: 1.5em;
+    color: #373A3C;
+    font-weight: 600;
 }

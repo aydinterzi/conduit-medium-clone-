@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Article.module.css";
-import Articles from "./Articles";
+import FavoriteButton from "./FavoriteButton";
 
 const Article = ({article}) => {
   return (
@@ -13,9 +13,10 @@ const Article = ({article}) => {
             <span>{article.createdAt}</span>
           </div>
         </div>
-        <button>{article.favoritesCount}</button>
+        
+        <FavoriteButton like={article.favoritesCount}/>
       </div>
-      <h1>{article.slug}</h1>
+      <h1 className={styles.slug}>{article.slug.replaceAll('-',' ')}</h1>
       <p>{article.description}</p>
       <div className={styles.footer}>
         <p>Read more...</p>
