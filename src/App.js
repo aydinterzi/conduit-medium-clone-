@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar";
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import NewArticle from './pages/NewArticle';
+import Settings from './pages/Settings';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/login" element={<SignIn/>}/>
         <Route path="/register" element={<SignUp/>}/>
+        <Route path="/editor" element={<NewArticle/>}/>
+        <Route path="/settings" element={<Settings/>}/>
       </Routes>
       </div>
   </>

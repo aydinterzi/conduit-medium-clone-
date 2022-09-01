@@ -12,7 +12,8 @@ const Home = () => {
   const [tags, setTags] = useState([]);
   const { currentUser } = useSelector(state => state.user);
 
-  const handleMyFeed = async () => {
+  const handleMyFeed = async (e) => {
+    e.preventDefault();
     try {
       const res = await axios.get('articles/feed',{
         headers: {
@@ -26,7 +27,8 @@ const Home = () => {
     }
   }
 
-  const handleGlobalFeed = async () => {
+  const handleGlobalFeed = async (e) => {
+    e.preventDefault();
     try {
       const res = await axios.get('articles',{
         headers: {
@@ -61,7 +63,7 @@ const Home = () => {
         <div className={styles.main}>
           <div className={styles.feeds}>
             <a href="/" onClick={handleMyFeed} >Your feed</a>
-            <a href onClick={handleGlobalFeed} >Global feed</a>
+            <a href="/" onClick={handleGlobalFeed} >Global feed</a>
           </div>
           <div className={styles.articles}>
             <Articles articles={articles}/>

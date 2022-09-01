@@ -8,6 +8,9 @@
   text-decoration: none;
 }
 
+button {
+  cursor: pointer;
+}
 
 body {
   font-family: 'Source Sans Pro', sans-serif;
