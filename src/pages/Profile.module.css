@@ -1,0 +1,17 @@
+.header {
+    background-color: #F3F3F3;
+}
+
+.profile {
+    width: 50%;
+    margin: 0 auto;
+    padding: 1em 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+}
+
+.link {
+    align-self: flex-end;
+}
