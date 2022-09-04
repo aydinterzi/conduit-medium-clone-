@@ -7,7 +7,6 @@ import {MdOutlineArticle} from "react-icons/md";
 const NavbarLogin = () => {
 
   const {currentUser} = useSelector(state => state.user)
-  console.log(currentUser);
   return (
     <div className={styles.container}>
       <NavLink to="/editor" style={({isActive})=> ({

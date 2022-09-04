@@ -1,82 +1,57 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Articles from "../components/Articles";
 import Header from "../components/Header";
+import { fetchArticles } from "../redux/articleSlice";
+import { selectGlobalFeed } from "../redux/articleSlice";
 
 import styles from "./Home.module.css";
 import { NavLink } from "react-router-dom";
 
 const Home = () => {
-  const [articles, setArticles] = useState([]);
+  const dispatch = useDispatch();
   const [tags, setTags] = useState([]);
-  const { currentUser } = useSelector(state => state.user);
+  const { currentUser } = useSelector((state) => state.user);
+  const allArticles = useSelector(selectGlobalFeed);
 
-  const handleMyFeed = async (e) => {
-    e.preventDefault();
+  const articleStatus = useSelector((state) => state.article.status);
+
+  const getTags = async () => {
     try {
-      const res = await axios.get('articles/feed',{
-        headers: {
-          Authorization : `Bearer ${currentUser.user.token}`
-        }
-      })
-      setArticles(res.data.articles);
-    }
-    catch(err) {
-      console.log(err);
-    }
-  }
+      const res = await axios.get("tags");
+      setTags(res.data.tags);
+    } catch (error) {}
+  };
 
-  const handleGlobalFeed = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.get('articles',{
-        headers: {
-          Authorization : `Bearer ${currentUser.user.token}`
-        }
-      })
-      setArticles(res.data.articles);
-      console.log(articles)
-    }
-    catch(err) {
-      console.log(err);
-    }
-  }
-
-
-  useEffect(()=> {
-    const getTags = async ()  => {
-      try {
-        const res = await axios.get('tags');
-        setTags(res.data.tags);
-        console.log(tags);
-      } catch (error) {
-      }
+  console.log(selectGlobalFeed);
+  console.log(allArticles)
+  useEffect(() => {
+    if(articleStatus === "idle")
+    {
+      dispatch(fetchArticles());
     }
     getTags();
-    handleGlobalFeed();
-    },[])
+  }, []);
   return (
     <>
       {!currentUser && <Header />}
       <div className={styles.container}>
         <div className={styles.main}>
           <div className={styles.feeds}>
-            <a href="/" onClick={handleMyFeed} >Your feed</a>
-            <a href="/" onClick={handleGlobalFeed} >Global feed</a>
+            <a href="/">Your feed</a>
+            <a href="/">Global feed</a>
           </div>
           <div className={styles.articles}>
-            <Articles articles={articles}/>
+            {/* <Articles articles={allArticles} /> */}
           </div>
         </div>
-      <div className={styles.tags}>
-        <p>Popular Tags</p>
-        <div className={styles.tag}>
-          {tags && tags.map((tag, index) => (
-            <a key={index}>{tag}</a>
-          ))}
+        <div className={styles.tags}>
+          <p>Popular Tags</p>
+          <div className={styles.tag}>
+            {tags && tags.map((tag, index) => <a key={index}>{tag}</a>)}
+          </div>
         </div>
-      </div>
       </div>
     </>
   );

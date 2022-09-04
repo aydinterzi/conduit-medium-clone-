@@ -15,3 +15,17 @@
 .link {
     align-self: flex-end;
 }
+
+.main {
+    width: 50%;
+    margin: 0 auto;
+    padding: 1em 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.feeds {
+    display: flex;
+    gap: 2em;
+}
