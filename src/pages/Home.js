@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Articles from "../components/Articles";
 import Header from "../components/Header";
 import { fetchArticles } from "../redux/articleSlice";
-import { selectGlobalFeed } from "../redux/articleSlice";
+import { selectGlobalFeed, selectMyFeed } from "../redux/articleSlice";
 
 import styles from "./Home.module.css";
 import { NavLink } from "react-router-dom";
@@ -14,8 +14,8 @@ const Home = () => {
   const [tags, setTags] = useState([]);
   const { currentUser } = useSelector((state) => state.user);
   const allArticles = useSelector(selectGlobalFeed);
-
-  const articleStatus = useSelector((state) => state.article.status);
+  const myFeed = useSelector(selectMyFeed);
+  const articleStatus = useSelector((state) => state.articles.status);
 
   const getTags = async () => {
     try {
@@ -24,8 +24,6 @@ const Home = () => {
     } catch (error) {}
   };
 
-  console.log(selectGlobalFeed);
-  console.log(allArticles)
   useEffect(() => {
     if(articleStatus === "idle")
     {
@@ -43,7 +41,7 @@ const Home = () => {
             <a href="/">Global feed</a>
           </div>
           <div className={styles.articles}>
-            {/* <Articles articles={allArticles} /> */}
+            <Articles articles={allArticles} />
           </div>
         </div>
         <div className={styles.tags}>

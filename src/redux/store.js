@@ -7,7 +7,7 @@ import articleReducer from './articleSlice';
 const store = configureStore({
     reducer :{
         user:userReducer,
-        article:articleReducer
+        articles:articleReducer
     }
 })
 
