@@ -3,7 +3,7 @@ import axios from "axios";
 
 const initialState = {
     articles: [],
-    myArticles: [],
+    myFeed: [],
     status: 'idle',
     error: false
 }
@@ -13,8 +13,8 @@ export const fetchArticles = createAsyncThunk('articles/fetchArticles',async () 
     return data.articles;
 })
 
-export const fetchMyArticles = createAsyncThunk('articles/fetchMyArticles', async () => {
-    const { data } = await axios.get('articles/feed',);
+export const fetchMyFeed = createAsyncThunk('articles/fetchMyFeed', async () => {
+    const { data } = await axios.get('articles/feed');
     return data.articles;
 })
 
@@ -62,9 +62,12 @@ const articleSlice = createSlice({
                 state.status = 'failed'
                 state.error = action.error.message
               })
-            .addCase(fetchMyArticles.fulfilled, (state, action)=> {
+            .addCase(fetchMyFeed.fulfilled, (state, action)=> {
                 state.status = "succeeded";
-                state.myArticles = action.paylaod;
+                state.myFeed = action.paylaod;
+            })
+            .addCase(favoriteArticle.fulfilled, (state, action)=> {
+                state.articles = action.payload;
             })
     }
 })
@@ -74,7 +77,7 @@ export default articleSlice.reducer;
 
 export const selectGlobalFeed = state => state.articles.articles;
 
-export const selectMyFeed = state =>  state.articles.myArticles;
+export const selectMyFeed = state =>  state.articles.myFeed;
 
 export const selectFavoritedArticles = state => 
     state.articles.articles.filter(article => article.favorited)

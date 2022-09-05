@@ -14,7 +14,7 @@ const Article = ({article}) => {
           </div>
         </div>
         
-        <FavoriteButton like={article.favoritesCount}/>
+        <FavoriteButton like={article.favoritesCount} slug={article.slug.replaceAll('-',' ')} isLike={article.favorited}/>
       </div>
       <h1 className={styles.slug}>{article.slug.replaceAll('-',' ')}</h1>
       <p>{article.description}</p>

@@ -39,7 +39,7 @@
     font-size: 12.8px;
 }
 
-a:focus {
+.link:focus {
     color: #5cb85c;
     border-bottom: 2px solid #5cb85c;
   }
