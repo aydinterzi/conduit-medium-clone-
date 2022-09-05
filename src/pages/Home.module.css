@@ -39,7 +39,26 @@
     font-size: 12.8px;
 }
 
+.link {
+    padding: 0 .5em;
+    position: relative;
+}
+
 .link:focus {
     color: #5cb85c;
-    border-bottom: 2px solid #5cb85c;
   }
+
+.link::after {
+  position: absolute;
+  content: '';
+  width: 100%;
+  transform: translateX(-50%);
+  bottom: -12px;
+  left: 50%;
+}
+
+.link:focus::after {
+    content: '';
+    position: absolute;
+    border-bottom: 2px solid green;
+}

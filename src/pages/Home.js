@@ -3,7 +3,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import Articles from "../components/Articles";
 import Header from "../components/Header";
-import { fetchArticles, fetchMyFeed } from "../redux/articleSlice";
+import { fetchArticles } from "../redux/articleSlice";
 import { selectGlobalFeed, selectMyFeed } from "../redux/articleSlice";
 
 import styles from "./Home.module.css";
@@ -17,8 +17,6 @@ const Home = () => {
   const allArticles = useSelector(selectGlobalFeed);
   const myFeed = useSelector(selectMyFeed);
   const articleStatus = useSelector((state) => state.articles.status);
-
-  console.log(myFeed)
   const getTags = async () => {
     try {
       const res = await axios.get("tags");
@@ -30,7 +28,6 @@ const Home = () => {
     if(articleStatus === "idle")
     {
       dispatch(fetchArticles());
-      dispatch(fetchMyFeed());
     }
     getTags();
   }, []);
@@ -40,8 +37,8 @@ const Home = () => {
       <div className={styles.container}>
         <div className={styles.main}>
           <div className={styles.feeds}>
-            <p onClick={e => setArticles(true)} className={styles.link}>Your feed</p>
-            <p onClick={e => setArticles(false)} className={styles.link}>Global feed</p>
+            <a href="/" onClick={e =>{e.preventDefault(); setArticles(true)}} className={styles.link}>Your feed</a>
+            <a href="/" onClick={e => {e.preventDefault(); setArticles(false)}} className={styles.link}>Global feed</a>
           </div>
           <div className={styles.articles}>
             {articleStatus === "loading" ? "Loading articles..." : (

@@ -31,7 +31,7 @@ const Profile = () => {
         </div>
         <div className={styles.articles}>
         {articleStatus === "loading" ? "Loading articles..." : (
-              articles === false ? <Articles articles={myArticles } /> : <Articles articles={favArticles} />
+              articles === false ? <Articles articles={favArticles } /> : <Articles articles={myArticles} />
             )}
         </div>
       </div>

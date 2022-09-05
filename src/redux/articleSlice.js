@@ -13,10 +13,6 @@ export const fetchArticles = createAsyncThunk('articles/fetchArticles',async () 
     return data.articles;
 })
 
-export const fetchMyFeed = createAsyncThunk('articles/fetchMyFeed', async () => {
-    const { data } = await axios.get('articles/feed');
-    return data.articles;
-})
 
 export const favoriteArticle = createAsyncThunk('articles/favoriteArticles',async (slug) => {
     const { data } = await axios.post(`articles/${slug}/favorite`);
@@ -62,10 +58,6 @@ const articleSlice = createSlice({
                 state.status = 'failed'
                 state.error = action.error.message
               })
-            .addCase(fetchMyFeed.fulfilled, (state, action)=> {
-                state.status = "succeeded";
-                state.myFeed = action.paylaod;
-            })
             .addCase(favoriteArticle.fulfilled, (state, action)=> {
                 state.articles = action.payload;
             })
@@ -77,7 +69,8 @@ export default articleSlice.reducer;
 
 export const selectGlobalFeed = state => state.articles.articles;
 
-export const selectMyFeed = state =>  state.articles.myFeed;
+export const selectMyFeed = state =>  
+    state.articles.articles.filter(article => article.author.following);
 
 export const selectFavoritedArticles = state => 
     state.articles.articles.filter(article => article.favorited)

@@ -8,8 +8,13 @@ import SignUp from './pages/SignUp';
 import NewArticle from './pages/NewArticle';
 import Settings from './pages/Settings';
 import Profile from "./pages/Profile";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 function App() {
+  const { currentUser } = useSelector((state) => state.user);
+  axios.defaults.headers.common['Authorization'] = `Bearer ${currentUser.user.token}`;
+
   return (
   <>
       <Navbar/>
