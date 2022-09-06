@@ -26,9 +26,9 @@ const Profile = () => {
       </header>
       <div className={styles.main}>
         <div className={styles.feeds}>
-        <p onClick={e => setArticles(true)}>My Articles</p>
-        <p onClick={e => setArticles(false)}>Favorited Articles</p>
-        </div>
+            <a href="/" onClick={e =>{e.preventDefault(); setArticles(true)}} className={styles.link}>Your feed</a>
+            <a href="/" onClick={e => {e.preventDefault();   setArticles(false)}} className={styles.link}>Global feed</a>
+          </div>
         <div className={styles.articles}>
         {articleStatus === "loading" ? "Loading articles..." : (
               articles === false ? <Articles articles={favArticles } /> : <Articles articles={myArticles} />

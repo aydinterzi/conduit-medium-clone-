@@ -25,8 +25,8 @@ export const unFavoriteArticle = createAsyncThunk('articles/unFavoriteArticles',
 })
 
 export const createArticle = createAsyncThunk('articles/createArticle',async (article) => {
-    const { data } = await axios.post('articles');
-    return data.articles;
+    const { data } = await axios.post('articles',{article});
+    return data.articles;   
 })
 
 export const updateArticle = createAsyncThunk('articles/updateArticle',async (slug) => {

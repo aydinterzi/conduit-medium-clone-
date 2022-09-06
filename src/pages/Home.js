@@ -43,8 +43,7 @@ const Home = () => {
           <div className={styles.articles}>
             {articleStatus === "loading" ? "Loading articles..." : (
               articles === false ? <Articles articles={allArticles} /> : <Articles articles={myFeed} />
-            )}
-            
+            )}        
           </div>
         </div>
         <div className={styles.tags}>
