@@ -1,0 +1,23 @@
+.post {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.postTextArea {
+    width: 100%;
+    padding: 1em;
+    margin-bottom: -.5em;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+}
+
+.postFooter {
+    background-color: #f5f5f5;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    gap: .5em;
+}

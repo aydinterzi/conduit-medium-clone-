@@ -20,6 +20,7 @@ const Home = () => {
   const getTags = async () => {
     try {
       const res = await axios.get("tags");
+      console.log(res.data.tags);
       setTags(res.data.tags);
     } catch (error) {}
   };

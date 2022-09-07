@@ -1,16 +1,27 @@
 import React from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
 import ProfileComp from "../components/ProfileComp";
 import styles from './SingleArticle.module.css'
+import axios from "axios";
+import { useState } from "react";
+import Comment from "../components/Comment";
 
 const SingleArticle = () => {
+  const [comments, setComments] = useState([]);
   const {currentUser} = useSelector(state => state.user);
   const { title } = useParams();
   const { state } = useLocation();
   const { article } = state;
-  console.log(title);
-  console.log(article);
+  console.log()
+  useEffect(()=>{
+    const getComments = async () => {
+      const {data} = await axios.get(`articles/${title}/comments`)
+      setComments(data.comments);
+    }
+    getComments();
+  },[title])
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -40,6 +51,9 @@ const SingleArticle = () => {
               </div>
               
             </div>
+            {comments.map(comment => (
+              <Comment comment={comment}/>
+            ))}
       </div>
 
     </div>

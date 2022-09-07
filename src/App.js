@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 
 function App() {
   const { currentUser } = useSelector((state) => state.user);
+  axios.defaults.baseURL = "https://api.realworld.io/api/";
   axios.defaults.headers.common['Authorization'] =currentUser && `Bearer ${currentUser.user.token}`;
 
   return (
