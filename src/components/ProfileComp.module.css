@@ -1,0 +1,10 @@
+.profile {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+
+.author {
+    display: flex;
+    flex-direction: column;
+}

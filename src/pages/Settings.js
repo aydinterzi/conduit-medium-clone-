@@ -27,6 +27,7 @@ const Settings = () => {
         },
       });
       dispatch(updateUser(data));
+      navigate(`/@${currentUser.user.username}`)
     }
     catch(err)
     {

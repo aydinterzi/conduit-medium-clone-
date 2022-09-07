@@ -1,8 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./Article.module.css";
 import FavoriteButton from "./FavoriteButton";
 
-const Article = ({article}) => {
+const Article = ({ article }) => {
+  const navigate = useNavigate();
+
+  const handleArticle = () => {
+    navigate(`/article/${article.slug}`, {state:{article}});
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -13,18 +20,26 @@ const Article = ({article}) => {
             <span>{article.createdAt}</span>
           </div>
         </div>
-        
-        <FavoriteButton like={article.favoritesCount} slug={article.slug.replaceAll('-',' ')} isLike={article.favorited}/>
+
+        <FavoriteButton
+          like={article.favoritesCount}
+          slug={article.slug.replaceAll("-", " ")}
+          isLike={article.favorited}
+        />
       </div>
-      <h1 className={styles.slug}>{article.slug.replaceAll('-',' ')}</h1>
-      <p>{article.description}</p>
+      <div onClick={handleArticle} className={styles.content}>
+        <h1 className={styles.slug}>{article.slug.replaceAll("-", " ")}</h1>
+        <p>{article.description}</p>
+      </div>
       <div className={styles.footer}>
         <p>Read more...</p>
         <ul className={styles.tagList}>
-        {article.tagList.map((tag, index) => (
-            <li className={styles.tagItem} key={index}>{tag}</li>
+          {article.tagList.map((tag, index) => (
+            <li className={styles.tagItem} key={index}>
+              {tag}
+            </li>
           ))}
-          </ul>
+        </ul>
       </div>
     </div>
   );

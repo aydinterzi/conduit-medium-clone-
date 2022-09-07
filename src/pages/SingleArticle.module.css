@@ -1,0 +1,83 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+
+.header {
+    background-color: #333333;
+    color: #fff;
+}
+.content {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 2em;
+    padding: 2em;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.profile {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+
+.username {
+    color: #fff;
+}
+
+
+.author {
+    display: flex;
+    flex-direction: column;
+}
+
+.tagList {
+    display: flex;
+    gap: .3em;
+}
+
+.tagItem {
+    padding: .1em .5em;
+    border-radius: 10px;
+    border: 1px solid #aaaaaa;
+    font-size: 12.8px
+}
+
+.profile img {
+    border-radius: 50%;
+    height: 2rem;
+}
+
+.mAuto {
+    margin: 0 auto;
+}
+
+.post {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.postTextArea {
+    width: 100%;
+    padding: 1em;
+    margin-bottom: -.5em;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+}
+
+.postFooter {
+    background-color: #f5f5f5;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+}
+
+
+
