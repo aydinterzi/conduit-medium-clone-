@@ -4,14 +4,31 @@ import styles from "./Profile.module.css";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { selectFavoritedArticles, selectMyArticles } from "../redux/articleSlice";
+import { selectMyArticles } from "../redux/articleSlice";
+import { useEffect } from "react";
+import axios from "axios";
 const Profile = () => {
   const { username } = useParams();
   const [articles, setArticles] = useState(false);
-  const favArticles = useSelector(selectFavoritedArticles);
+  const [favArticles, setFavArticles] = useState([]);
   const myArticles = useSelector(state => selectMyArticles(state,username));
   const articleStatus = useSelector((state) => state.articles.status);
+  console.log(favArticles);
 
+  useEffect(()=> {
+    const getFavoritedArticles = async () =>{
+      try
+      {
+        const {data} = await axios.get(`articles?favorited=${username}`)
+        setFavArticles(data.articles);
+      }
+      catch(err)
+      {
+        console.log(err);
+      }
+    } 
+   getFavoritedArticles();
+  },[username])
   return (
     <div>
       <header className={styles.header}>
@@ -26,8 +43,8 @@ const Profile = () => {
       </header>
       <div className={styles.main}>
         <div className={styles.feeds}>
-            <a href="/" onClick={e =>{e.preventDefault(); setArticles(true)}} className={styles.link}>Your feed</a>
-            <a href="/" onClick={e => {e.preventDefault();   setArticles(false)}} className={styles.link}>Global feed</a>
+            <a href="/" onClick={e =>{e.preventDefault(); setArticles(true)}} className={styles.link}>My Articles</a>
+            <a href="/" onClick={e => {e.preventDefault();   setArticles(false)}} className={styles.link}>Favorited Articles</a>
           </div>
         <div className={styles.articles}>
         {articleStatus === "loading" ? "Loading articles..." : (
