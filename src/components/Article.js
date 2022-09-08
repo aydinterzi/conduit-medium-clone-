@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./Article.module.css";
 import FavoriteButton from "./FavoriteButton";
 
@@ -16,14 +16,14 @@ const Article = ({ article }) => {
         <div className={styles.profile}>
           <img src={article.author.image} alt="resim" />
           <div className={styles.author}>
-            <a href="">{article.author.username}</a>
+            <NavLink to={`@${article.author.username}`}>{article.author.username}</NavLink>
             <span>{article.createdAt}</span>
           </div>
         </div>
 
         <FavoriteButton
           like={article.favoritesCount}
-          slug={article.slug.replaceAll("-", " ")}
+          slug={article.slug}
           isLike={article.favorited}
         />
       </div>

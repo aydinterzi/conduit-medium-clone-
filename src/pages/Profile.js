@@ -8,6 +8,7 @@ import { selectMyArticles } from "../redux/articleSlice";
 import { useEffect } from "react";
 import axios from "axios";
 const Profile = () => {
+  const {user} = useSelector(state => state.user.currentUser)
   const { username } = useParams();
   const [articles, setArticles] = useState(false);
   const [favArticles, setFavArticles] = useState([]);
@@ -33,9 +34,9 @@ const Profile = () => {
     <div>
       <header className={styles.header}>
         <div className={styles.profile}>
-          <img src="" alt="" />
+          <img src={user.image} alt="user profile" className={styles.image}/>
           <h4>{username}</h4>
-          <p>merhaba</p>
+          <p>{user.bio}</p>
           <NavLink to="/settings" className={styles.link}>
             Edit Profile Settings
           </NavLink>
