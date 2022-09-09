@@ -12,8 +12,10 @@ import Profile from "./pages/Profile";
 import axios from "axios";
 import { fetchArticles } from "./redux/articleSlice";
 import { useDispatch, useSelector } from "react-redux";
+import EditArticle from "./pages/EditArticle";
 
 function App() {
+  console.log("asd")
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
   const articleStatus = useSelector((state) => state.articles.status);
@@ -34,6 +36,7 @@ function App() {
         <Route path="/login" element={<SignIn/>}/>
         <Route path="/register" element={<SignUp/>}/>
         <Route path="/editor" element={<NewArticle/>}/>
+        <Route path="/editor/:title" element={<EditArticle/>}/>
         <Route path="/settings" element={<Settings/>}/>
         <Route path="/@:username" element={<Profile/>}/>
         <Route path="/article/:title" element={<SingleArticle/>}/>

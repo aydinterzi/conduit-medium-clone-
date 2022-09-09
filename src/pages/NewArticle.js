@@ -21,7 +21,7 @@ const NewArticle = () => {
         tagList,
       })
     );
-    navigate(`/article/${title}`);
+    navigate(`/article/${title}-92192`);
   };
 
   return (

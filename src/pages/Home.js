@@ -16,7 +16,6 @@ const Home = () => {
   const allArticles = useSelector(selectGlobalFeed);
   const myFeed = useSelector(selectMyFeed);
   const articleStatus = useSelector((state) => state.articles.status);
-
   useEffect(() => {
     const getTags = async () => {
       try {

@@ -3,7 +3,6 @@ import axios from "axios";
 
 const initialState = {
   articles: [],
-  myFeed: [],
   status: "idle",
   error: false,
 };
@@ -36,15 +35,17 @@ export const createArticle = createAsyncThunk(
   "articles/createArticle",
   async (article) => {
     const { data } = await axios.post("articles", { article });
-    return data.articles;
+    console.log(data);
+    return data.article;
   }
 );
 
 export const updateArticle = createAsyncThunk(
   "articles/updateArticle",
-  async (slug) => {
-    const { data } = await axios.put(`articles/${slug}`);
-    return data.articles;
+  async (article) => {
+    console.log(article);
+    const { data } = await axios.put(`articles/${article.slug}`,{article});
+    return data.article;
   }
 );
 
@@ -77,14 +78,34 @@ const articleSlice = createSlice({
         const { slug } = action.payload;
         const article = state.articles.find((article) => article.slug === slug);
         article.favoritesCount = action.payload.favoritesCount;
-        console.log(article);
       })
       .addCase(unFavoriteArticle.fulfilled, (state, action) => {
         const { slug } = action.payload;
         const article = state.articles.find((article) => article.slug === slug);
         article.favoritesCount = action.payload.favoritesCount;
+      })
+      .addCase(createArticle.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(createArticle.fulfilled,(state, action) => {
+        state.status = "succeeded";
+        console.log(action.payload);
+        state.articles.push(action.payload);
+      })
+      .addCase(updateArticle.pending, (state, action) =>{
+        state.status = "loading";
+      })
+      .addCase(updateArticle.fulfilled, (state, action) =>{
+        const { slug } = action.payload;
+        console.log(action.payload);
+        const article = state.articles.find((article) => article.slug === slug);
         console.log(article);
-      });
+        article.body = action.payload.body;
+        article.title = action.payload.title;
+        article.description = action.payload.description;
+        article.tagList = action.payload.tagList; 
+        state.status = "succeeded";
+      })
   },
 });
 

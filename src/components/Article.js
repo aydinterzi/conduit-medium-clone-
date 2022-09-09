@@ -7,7 +7,7 @@ const Article = ({ article }) => {
   const navigate = useNavigate();
 
   const handleArticle = () => {
-    navigate(`/article/${article.slug}`, {state:{article}});
+    navigate(`/article/${article.slug}`);
   }
 
   return (
