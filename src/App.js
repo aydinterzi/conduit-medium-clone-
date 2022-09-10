@@ -15,7 +15,6 @@ import { useDispatch, useSelector } from "react-redux";
 import EditArticle from "./pages/EditArticle";
 
 function App() {
-  console.log("asd")
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
   const articleStatus = useSelector((state) => state.articles.status);

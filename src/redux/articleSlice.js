@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+
 const initialState = {
   articles: [],
   status: "idle",
@@ -35,7 +36,6 @@ export const createArticle = createAsyncThunk(
   "articles/createArticle",
   async (article) => {
     const { data } = await axios.post("articles", { article });
-    console.log(data);
     return data.article;
   }
 );
@@ -43,17 +43,16 @@ export const createArticle = createAsyncThunk(
 export const updateArticle = createAsyncThunk(
   "articles/updateArticle",
   async (article) => {
-    console.log(article);
     const { data } = await axios.put(`articles/${article.slug}`,{article});
     return data.article;
   }
 );
 
 export const deleteArticle = createAsyncThunk(
-  "articles/favoriteArticles",
+  "articles/deleteArticle",
   async (slug) => {
     const { data } = await axios.delete(`articles/${slug}`);
-    return data.articles;
+    return data.article;
   }
 );
 
@@ -89,7 +88,6 @@ const articleSlice = createSlice({
       })
       .addCase(createArticle.fulfilled,(state, action) => {
         state.status = "succeeded";
-        console.log(action.payload);
         state.articles.push(action.payload);
       })
       .addCase(updateArticle.pending, (state, action) =>{
@@ -97,14 +95,20 @@ const articleSlice = createSlice({
       })
       .addCase(updateArticle.fulfilled, (state, action) =>{
         const { slug } = action.payload;
-        console.log(action.payload);
         const article = state.articles.find((article) => article.slug === slug);
-        console.log(article);
         article.body = action.payload.body;
         article.title = action.payload.title;
         article.description = action.payload.description;
         article.tagList = action.payload.tagList; 
         state.status = "succeeded";
+      })
+      .addCase(deleteArticle.pending, (state, action) => {
+        state.status = "loading";
+        console.log("loading2");
+      })
+      .addCase(deleteArticle.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        console.log("succed2");
       })
   },
 });

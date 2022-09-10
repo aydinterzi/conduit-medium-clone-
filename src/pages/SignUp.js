@@ -12,7 +12,6 @@ const SignUp = () => {
       const res = await axios.post("users", {
         user: { email, password, username },
       });
-      console.log(res.data);
     } catch (err) {}
   };
   return (

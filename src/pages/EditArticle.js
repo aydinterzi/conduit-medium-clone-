@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import styles from "./EditArticle.module.css";
 import {  updateArticle } from "../redux/articleSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const EditArticle = () =>{
-  console.log("asd")
     const {state : article} = useLocation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { status } = useSelector(state => state.articles)
     const [body, setBody] = useState(article.body);
     const [description, setDescription] = useState(article.description);
     const [title, setTitle] = useState(article.title);
@@ -23,7 +23,8 @@ const EditArticle = () =>{
           tagList,
         })
       );
-      console.log(article);
+      if(status==="succeeded")
+       navigate(`/article/${title}-92192`);
     };
   
     return (

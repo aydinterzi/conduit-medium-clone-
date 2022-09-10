@@ -12,9 +12,8 @@ const Profile = () => {
   const { username } = useParams();
   const [articles, setArticles] = useState(false);
   const [favArticles, setFavArticles] = useState([]);
-  const myArticles = useSelector(state => selectMyArticles(state,username));
+  const myArticles = useSelector(state => selectMyArticles(state,user.username));
   const articleStatus = useSelector((state) => state.articles.status);
-  console.log(favArticles);
 
   useEffect(()=> {
     const getFavoritedArticles = async () =>{

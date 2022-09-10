@@ -1,12 +1,13 @@
 import React from 'react'
 import { useState } from 'react'
 import {AiOutlineHeart} from 'react-icons/ai'
-import { useDispatch } from 'react-redux'
-import { unFavoriteArticle, favoriteArticle } from '../redux/articleSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { unFavoriteArticle, favoriteArticle, selectArticleBySlug } from '../redux/articleSlice'
 import styles from './FavoriteButton.module.css'
-const FavoriteButton = ( {like, slug, isLike} ) => {
+const FavoriteButton = ( { slug, isLike} ) => {
   const dispatch = useDispatch();
   const [favorited, setFavorited] = useState(isLike);
+  const {favoritesCount : like} = useSelector(state => selectArticleBySlug(state,slug));
   const favoriteArticles = () => {
     if(favorited)
     {

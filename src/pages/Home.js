@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Articles from "../components/Articles";
 import Header from "../components/Header";
-import { fetchArticles } from "../redux/articleSlice";
 import { selectGlobalFeed, selectMyFeed } from "../redux/articleSlice";
-
 import styles from "./Home.module.css";
-import { NavLink } from "react-router-dom";
+
 
 const Home = () => {
   const [tags, setTags] = useState([]);
@@ -20,7 +18,6 @@ const Home = () => {
     const getTags = async () => {
       try {
         const res = await axios.get("tags");
-        console.log(res.data.tags);
         setTags(res.data.tags);
       } catch (error) {}
     };
