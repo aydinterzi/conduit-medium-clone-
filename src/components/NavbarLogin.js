@@ -9,15 +9,15 @@ const NavbarLogin = () => {
   const {currentUser} = useSelector(state => state.user)
   return (
     <div className={styles.container}>
-      <NavLink to="/editor" style={({isActive})=> ({
+      <NavLink to="/editor" className={styles.link}  style={({isActive})=> ({
         color:isActive?'black':'transperent',
         fontWeight:isActive?'bold':'normal'
         })}><MdOutlineArticle style={{color:'#aaa'}}/>New Article</NavLink>
-      <NavLink to="/settings" style={({isActive})=> ({
+      <NavLink to="/settings" className={styles.link} style={({isActive})=> ({
         color:isActive?'black':'transperent',
         fontWeight:isActive?'bold':'normal'
       })}><RiSettings5Fill style={{color:'#aaa'}}/>Settings</NavLink>
-       <NavLink to={currentUser && `@${currentUser.user.username}`} style={({isActive})=> ({
+       <NavLink to={currentUser && `@${currentUser.user.username}`} className={styles.link} style={({isActive})=> ({
         color:isActive?'black':'transperent',
         fontWeight:isActive?'bold':'normal'
       })}>{ currentUser && currentUser.user.username}</NavLink>

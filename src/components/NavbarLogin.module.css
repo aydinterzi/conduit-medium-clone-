@@ -2,3 +2,8 @@
     display: flex;
     gap: 1rem;
 }
+
+.link {
+    display: flex;
+    align-items: center;
+}

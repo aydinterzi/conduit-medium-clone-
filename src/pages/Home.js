@@ -35,7 +35,7 @@ const Home = () => {
                 e.preventDefault();
                 setArticles(true);
               }}
-              className={styles.link}
+              className={articles && styles.link}
             >
               Your feed
             </a>
@@ -45,7 +45,7 @@ const Home = () => {
                 e.preventDefault();
                 setArticles(false);
               }}
-              className={styles.link}
+              className={!articles && styles.link}
             >
               Global feed
             </a>

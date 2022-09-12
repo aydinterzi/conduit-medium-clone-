@@ -4,6 +4,7 @@
     justify-content: space-between;
     padding: 1em;
     width: 78%;
+    min-width: 825px ;
 }
 
 .feeds {
@@ -42,11 +43,8 @@
 .link {
     padding: 0 .5em;
     position: relative;
-}
-
-.link:focus {
     color: #5cb85c;
-  }
+}
 
 .link::after {
   position: absolute;
@@ -55,10 +53,6 @@
   transform: translateX(-50%);
   bottom: -12px;
   left: 50%;
+  border-bottom: 2px solid green;
 }
 
-.link:focus::after {
-    content: '';
-    position: absolute;
-    border-bottom: 2px solid green;
-}

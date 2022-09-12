@@ -41,7 +41,7 @@ const ProfileComp = ({ article }) => {
 
   return (
     <div className={styles.profile}>
-      <img src={article.author.image} alt="resim" />
+      <img src={article.author.image} alt="" />
       <div className={styles.author}>
         <NavLink to={`/@${article.author.username}`}>
           {article.author.username}

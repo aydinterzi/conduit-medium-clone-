@@ -34,17 +34,17 @@ const Profile = () => {
       <header className={styles.header}>
         <div className={styles.profile}>
           <img src={user.image} alt="user profile" className={styles.image}/>
-          <h4>{username}</h4>
+          <h2>{username}</h2>
           <p>{user.bio}</p>
-          <NavLink to="/settings" className={styles.link}>
+          <NavLink to="/settings" className={styles.settings}>
             Edit Profile Settings
           </NavLink>
         </div>
       </header>
       <div className={styles.main}>
         <div className={styles.feeds}>
-            <a href="/" onClick={e =>{e.preventDefault(); setArticles(true)}} className={styles.link}>My Articles</a>
-            <a href="/" onClick={e => {e.preventDefault();   setArticles(false)}} className={styles.link}>Favorited Articles</a>
+            <a href="/" onClick={e =>{e.preventDefault(); setArticles(true)}} className={articles && styles.link}>My Articles</a>
+            <a href="/" onClick={e => {e.preventDefault();   setArticles(false)}} className={!articles && styles.link}>Favorited Articles</a>
           </div>
         <div className={styles.articles}>
         {articleStatus === "loading" ? "Loading articles..." : (
