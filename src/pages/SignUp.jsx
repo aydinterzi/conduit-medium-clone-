@@ -1,15 +1,16 @@
-import React, { useState } from "react";
-import axios from "axios";
-import styles from "./SignUp.module.css";
-const SignUp = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+import React, { useState } from 'react';
+import axios from 'axios';
+import styles from './SignUp.module.css';
+
+function SignUp() {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("users", {
+      const res = await axios.post('users', {
         user: { email, password, username },
       });
     } catch (err) {}
@@ -34,10 +35,12 @@ const SignUp = () => {
           type="password"
           placeholder="Password"
         />
-        <button className={styles.btn} type="submit">Sign up</button>
+        <button className={styles.btn} type="submit">
+          Sign up
+        </button>
       </form>
     </div>
   );
-};
+}
 
 export default SignUp;

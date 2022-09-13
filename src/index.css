@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;600&family=Titillium+Web&display=swap');
+
 *,
 *::after,
 *::before {
@@ -16,7 +17,3 @@ button {
 body {
   font-family: 'Source Sans Pro', sans-serif;
 }
-
-
-
-

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { updateUser } from "../redux/userSlice";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import styles from "./Settings.module.css";
-import { logout } from "../redux/userSlice";
-const Settings = () => {
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { updateUser, logout } from '../redux/userSlice';
+import styles from './Settings.module.css';
+
+function Settings() {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -13,17 +13,16 @@ const Settings = () => {
   const [username, setUsername] = useState(currentUser.user.username);
   const [bio, setBio] = useState(currentUser.user.bio);
   const [image, setImage] = useState(currentUser.user.image);
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState('');
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate("/");
-  }
+    navigate('/');
+  };
 
   const handleSubmit = async () => {
-    try
-    {
-      const { data } = await axios.put("user", {
+    try {
+      const { data } = await axios.put('user', {
         user: {
           email,
           bio,
@@ -33,13 +32,10 @@ const Settings = () => {
         },
       });
       dispatch(updateUser(data));
-      navigate(`/@${currentUser.user.username}`)
+      navigate(`/@${currentUser.user.username}`);
+    } catch (err) {
+      console.log(err);
     }
-    catch(err)
-    {
-      console.log(err)
-    }
-   
   };
 
   return (
@@ -65,7 +61,7 @@ const Settings = () => {
         cols="30"
         rows="8"
         placeholder="Short bio about you"
-      ></textarea>
+      />
       <input
         onChange={(e) => setEmail(e.target.value)}
         value={email}
@@ -87,6 +83,6 @@ const Settings = () => {
       </button>
     </div>
   );
-};
+}
 
 export default Settings;

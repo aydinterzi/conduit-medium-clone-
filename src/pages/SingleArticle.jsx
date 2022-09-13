@@ -1,15 +1,15 @@
-import React from "react";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import ProfileComp from "../components/ProfileComp";
-import styles from "./SingleArticle.module.css";
-import axios from "axios";
-import { useState } from "react";
-import Comment from "../components/Comment";
-import { selectArticleBySlug } from "../redux/articleSlice";
+import React, { useEffect, useState } from 'react';
 
-const SingleArticle = () => {
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import ProfileComp from '../components/ProfileComp';
+import styles from './SingleArticle.module.css';
+
+import Comment from '../components/Comment';
+import { selectArticleBySlug } from '../redux/articleSlice';
+
+function SingleArticle() {
   const [comments, setComments] = useState([]);
   const { currentUser } = useSelector((state) => state.user);
   const { title } = useParams();
@@ -18,14 +18,13 @@ const SingleArticle = () => {
   const [comment, setComment] = useState('');
 
   const handleComment = async () => {
-    const { data } = await axios.post(`articles/${article.slug}/comments`,{comment:{body:comment}});
-  console.log(data);
+    const { data } = await axios.post(`articles/${article.slug}/comments`, {
+      comment: { body: comment },
+    });
+    console.log(data);
     setComment('');
-    setComments([
-      ...comments,
-      data.comment
-    ])
-  }
+    setComments([...comments, data.comment]);
+  };
   useEffect(() => {
     const getComments = async () => {
       const { data } = await axios.get(`articles/${title}/comments`);
@@ -35,7 +34,7 @@ const SingleArticle = () => {
   }, [title]);
   return (
     <div className={styles.container}>
-      {status === "succeeded" ? (
+      {status === 'succeeded' ? (
         <header className={styles.header}>
           <div className={styles.content}>
             <h1>{title}</h1>
@@ -43,9 +42,9 @@ const SingleArticle = () => {
           </div>
         </header>
       ) : (
-        ""
+        ''
       )}
-      {status === "succeeded" ? (
+      {status === 'succeeded' ? (
         <div className={styles.content}>
           <p>{article.body}</p>
           <ul className={styles.tagList}>
@@ -61,13 +60,13 @@ const SingleArticle = () => {
           </div>
           <div className={styles.post}>
             <textarea
-            onChange={e => setComment(e.target.value)}
-            value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              value={comment}
               placeholder="Write a comment..."
               className={styles.postTextArea}
               cols="30"
               rows="4"
-            ></textarea>
+            />
             <div className={styles.postFooter}>
               <img src={currentUser.user.image} alt="asd" />
               <button onClick={handleComment}>Post Comment</button>
@@ -78,10 +77,10 @@ const SingleArticle = () => {
           ))}
         </div>
       ) : (
-        ""
+        ''
       )}
     </div>
   );
-};
+}
 
 export default SingleArticle;

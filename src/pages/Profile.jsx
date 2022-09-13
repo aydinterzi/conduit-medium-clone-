@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import Articles from "../components/Articles";
-import styles from "./Profile.module.css";
-import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { useParams } from "react-router-dom";
-import { selectMyArticles } from "../redux/articleSlice";
-import { useEffect } from "react";
-import axios from "axios";
-import { getSuggestedQuery } from "@testing-library/react";
-const Profile = () => {
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { NavLink, useParams } from 'react-router-dom';
+
+import axios from 'axios';
+import { getSuggestedQuery } from '@testing-library/react';
+import styles from './Profile.module.css';
+import Articles from '../components/Articles';
+import { selectMyArticles } from '../redux/articleSlice';
+
+function Profile() {
   const [user, setUser] = useState(null);
   const { username } = useParams();
   const [articles, setArticles] = useState(false);
@@ -22,7 +22,7 @@ const Profile = () => {
       try {
         const { data } = await axios.get(`profiles/${username}`);
         setUser(data.profile);
-        console.log(data)
+        console.log(data);
       } catch (err) {
         console.log(err);
       }
@@ -53,7 +53,11 @@ const Profile = () => {
     <div>
       <header className={styles.header}>
         <div className={styles.profile}>
-          <img src={user && user.image} alt="user profile" className={styles.image} />
+          <img
+            src={user && user.image}
+            alt="user profile"
+            className={styles.image}
+          />
           <h2>{user && username}</h2>
           <p>{user && user.bio}</p>
           <NavLink to="/settings" className={styles.settings}>
@@ -85,8 +89,8 @@ const Profile = () => {
           </a>
         </div>
         <div className={styles.articles}>
-          {articleStatus === "loading" ? (
-            "Loading articles..."
+          {articleStatus === 'loading' ? (
+            'Loading articles...'
           ) : articles === false ? (
             <Articles articles={favArticles} />
           ) : (
@@ -96,6 +100,6 @@ const Profile = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Profile;

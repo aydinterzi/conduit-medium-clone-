@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { useSelector } from "react-redux";
-import Articles from "../components/Articles";
-import Header from "../components/Header";
-import { selectGlobalFeed, selectMyFeed } from "../redux/articleSlice";
-import styles from "./Home.module.css";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import Articles from '../components/Articles';
+import Header from '../components/Header';
+import { selectGlobalFeed, selectMyFeed } from '../redux/articleSlice';
+import styles from './Home.module.css';
 
-
-const Home = () => {
+function Home() {
   const [tags, setTags] = useState([]);
   const [articles, setArticles] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
@@ -17,10 +16,9 @@ const Home = () => {
   useEffect(() => {
     const getTags = async () => {
       try {
-        const res = await axios.get("tags");
+        const res = await axios.get('tags');
         setTags(res.data.tags);
-      } catch (error) {
-      }
+      } catch (error) {}
     };
     getTags();
   }, []);
@@ -52,12 +50,12 @@ const Home = () => {
             </a>
           </div>
           <div className={styles.articles}>
-            {articleStatus === "loading" ? (
-              "Loading articles..."
+            {articleStatus === 'loading' ? (
+              'Loading articles...'
             ) : articles === false ? (
               <Articles articles={allArticles} />
             ) : (
-             currentUser && <Articles articles={myFeed} />
+              currentUser && <Articles articles={myFeed} />
             )}
           </div>
         </div>
@@ -70,6 +68,6 @@ const Home = () => {
       </div>
     </>
   );
-};
+}
 
 export default Home;

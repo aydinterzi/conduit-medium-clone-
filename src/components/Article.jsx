@@ -1,13 +1,13 @@
-import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import styles from "./Article.module.css";
-import FavoriteButton from "./FavoriteButton";
-const Article = ({ article }) => {
-  const date = new Date(article.createdAt);
+import React from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import styles from './Article.module.css';
+import FavoriteButton from './FavoriteButton';
+
+function Article({ article }) {
   const navigate = useNavigate();
   const handleArticle = () => {
     navigate(`/article/${article.slug}`);
-  }
+  };
 
   return (
     <div className={styles.container}>
@@ -15,7 +15,9 @@ const Article = ({ article }) => {
         <div className={styles.profile}>
           <img src={article.author.image} alt="resim" />
           <div className={styles.author}>
-            <NavLink to={`/@${article.author.username}`}>{article.author.username}</NavLink>
+            <NavLink to={`/@${article.author.username}`}>
+              {article.author.username}
+            </NavLink>
             <span>{article.createdAt}</span>
           </div>
         </div>
@@ -27,7 +29,7 @@ const Article = ({ article }) => {
         />
       </div>
       <div onClick={handleArticle} className={styles.content}>
-        <h1 className={styles.slug}>{article.slug.replaceAll("-", " ")}</h1>
+        <h1 className={styles.slug}>{article.slug.replaceAll('-', ' ')}</h1>
         <p>{article.description}</p>
       </div>
       <div className={styles.footer}>
@@ -42,6 +44,6 @@ const Article = ({ article }) => {
       </div>
     </div>
   );
-};
+}
 
 export default Article;

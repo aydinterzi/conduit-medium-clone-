@@ -1,43 +1,45 @@
-import axios from "axios";
-import React from "react";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
-import { deleteArticle } from "../redux/articleSlice";
-import styles from "./ProfileComp.module.css";
-const ProfileComp = ({ article }) => {
+import axios from 'axios';
+import React, { useState } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { deleteArticle } from '../redux/articleSlice';
+import styles from './ProfileComp.module.css';
+
+function ProfileComp({ article }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { status } = useSelector(state => state.articles)
+  const { status } = useSelector((state) => state.articles);
   const [follow, setFollow] = useState(article.author.following);
   const { currentUser } = useSelector((state) => state.user);
   const handleFollow = async () => {
     if (follow) {
       const { data } = await axios.delete(
-        `profiles/${article.author.username}/follow`
+        `profiles/${article.author.username}/follow`,
       );
       setFollow(false);
     } else {
       const { data } = await axios.post(
-        `profiles/${article.author.username}/follow`
+        `profiles/${article.author.username}/follow`,
       );
       setFollow(true);
     }
   };
 
   const editArticle = () => {
-    navigate(`/editor/${article.slug}`,{state:article})
-  }
+    navigate(`/editor/${article.slug}`, { state: article });
+  };
 
   const deleteArticles = async () => {
     dispatch(deleteArticle(article.slug));
-    if(status==="loading")
-      console.log("loading")
-    if(status==="succeeded")
-      {
-        console.log("succed")
-        navigate("/");}
-  }
+    if (status === 'loading') {
+      console.log('loading');
+    }
+    if (status === 'succeeded') {
+      console.log('succed');
+      navigate('/');
+    }
+  };
 
   return (
     <div className={styles.profile}>
@@ -56,13 +58,16 @@ const ProfileComp = ({ article }) => {
       ) : (
         <div>
           <button onClick={handleFollow}>
-            {follow ? "+ Unfollow Gerome" : "+ Follow Gerome"}
+            {follow ? '+ Unfollow Gerome' : '+ Follow Gerome'}
           </button>
-          <button>Unfavorite Article{article.favoritesCount}</button>
+          <button>
+            Unfavorite Article
+            {article.favoritesCount}
+          </button>
         </div>
       )}
     </div>
   );
-};
+}
 
 export default ProfileComp;
