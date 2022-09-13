@@ -19,7 +19,8 @@ const Home = () => {
       try {
         const res = await axios.get("tags");
         setTags(res.data.tags);
-      } catch (error) {}
+      } catch (error) {
+      }
     };
     getTags();
   }, []);
@@ -56,7 +57,7 @@ const Home = () => {
             ) : articles === false ? (
               <Articles articles={allArticles} />
             ) : (
-              <Articles articles={myFeed} />
+             currentUser && <Articles articles={myFeed} />
             )}
           </div>
         </div>

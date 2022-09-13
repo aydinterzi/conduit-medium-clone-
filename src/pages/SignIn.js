@@ -31,7 +31,7 @@ const SignIn = () => {
     <div className={styles.container}>
       <form  onSubmit={handleSubmit}>
         <p className={styles.signin}>Sign in</p>
-        <p className={styles.signup}>Have an account?</p>
+        <p onClick={()=> {navigate("/register") }} className={styles.signup}>Have an account?</p>
         <input
           onChange={(e) => setEmail(e.target.value)}
           type="text"

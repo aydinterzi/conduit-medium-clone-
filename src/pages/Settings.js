@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styles from "./Settings.module.css";
+import { logout } from "../redux/userSlice";
 const Settings = () => {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
@@ -13,6 +14,11 @@ const Settings = () => {
   const [bio, setBio] = useState(currentUser.user.bio);
   const [image, setImage] = useState(currentUser.user.image);
   const [password, setPassword] = useState("");
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/");
+  }
 
   const handleSubmit = async () => {
     try
@@ -76,7 +82,7 @@ const Settings = () => {
         Update Settings
       </button>
       <hr />
-      <button type="submit" className={styles.redBtn}>
+      <button type="submit" onClick={handleLogout} className={styles.redBtn}>
         Or click here to logout.
       </button>
     </div>

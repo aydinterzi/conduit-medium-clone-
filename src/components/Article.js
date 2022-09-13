@@ -2,10 +2,9 @@ import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./Article.module.css";
 import FavoriteButton from "./FavoriteButton";
-
 const Article = ({ article }) => {
+  const date = new Date(article.createdAt);
   const navigate = useNavigate();
-
   const handleArticle = () => {
     navigate(`/article/${article.slug}`);
   }
@@ -16,7 +15,7 @@ const Article = ({ article }) => {
         <div className={styles.profile}>
           <img src={article.author.image} alt="resim" />
           <div className={styles.author}>
-            <NavLink to={`@${article.author.username}`}>{article.author.username}</NavLink>
+            <NavLink to={`/@${article.author.username}`}>{article.author.username}</NavLink>
             <span>{article.createdAt}</span>
           </div>
         </div>
